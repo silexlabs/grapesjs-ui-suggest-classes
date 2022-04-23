@@ -1,0 +1,24 @@
+{
+  "name": "grapesjs-ui-suggest-classes",
+  "version": "1.0.0",
+  "description": "Grapesjs Ui Suggest Classes",
+  "main": "dist/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lexoyo/grapesjs-ui-suggest-classes.git"
+  },
+  "scripts": {
+    "start": "grapesjs-cli serve",
+    "build": "grapesjs-cli build",
+    "bump": "npm version patch -m 'Bump v%s'"
+  },
+  "keywords": [
+    "grapesjs",
+    "plugin"
+  ],
+  "devDependencies": {
+    "grapesjs-cli": "^3.0.0",
+    "lit-html": "^2.2.2"
+  },
+  "license": "MIT"
+}
