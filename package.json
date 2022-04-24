@@ -1,6 +1,6 @@
 {
   "name": "grapesjs-ui-suggest-classes",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Grapesjs Ui Suggest Classes",
   "main": "dist/index.js",
   "repository": {
@@ -8,6 +8,7 @@
     "url": "https://github.com/lexoyo/grapesjs-ui-suggest-classes.git"
   },
   "scripts": {
+    "prepublish": "npm run build",
     "start": "grapesjs-cli serve",
     "build": "grapesjs-cli build",
     "bump": "npm version patch -m 'Bump v%s'"

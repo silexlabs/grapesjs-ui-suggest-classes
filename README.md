@@ -6,6 +6,9 @@
 
 * Plugin name: `grapesjs-ui-suggest-classes`
 * UI: a tag list will appear when you click "+" in the class list of an element
+* Feature: suggest css classes as you type
+
+![Suggest CSS classes as you type](https://user-images.githubusercontent.com/715377/164978546-eb6eba13-f20a-4b53-873f-c98d54cdf93b.png)
 
 
 ## Options
