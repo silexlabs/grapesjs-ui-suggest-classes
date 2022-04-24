@@ -20,9 +20,6 @@ export default (editor, opts = {}) => {
       padding: 0 5px;
     }
     .${prefix}suggest__class {
-      xmargin: 0;
-      xpadding: 10px;
-      xtext-align: left;
       list-style: none;
       cursor: pointer;
       display: inline-block;
