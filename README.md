@@ -15,7 +15,8 @@
 
 | Option | Description | Default |
 |-|-|-
-| `option1` | Description option | `default value` |
+| `containerStyle` | The css style of the tags container | check the source code |
+| `tagStyle` | The css style of the tags | check the source code |
 
 
 

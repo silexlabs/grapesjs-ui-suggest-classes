@@ -6,25 +6,31 @@ export default (editor, opts = {}) => {
   const listEl = document.createElement('div');
   const prefix =  editor.Config.selectorManager.pStylePrefix;
   const selIdAttr = 'data-sel-id';
-  const styles = `
-    .${prefix}suggest {
-      width: 100%;
-      position: absolute;
-      z-index: 999;
-      padding: 0;
-      margin: 0;
-      left: 0;
-      right: 0;
-      transition: opacity .25s ease;
-      text-align: left;
-      padding: 0 5px;
-    }
-    .${prefix}suggest__class {
-      list-style: none;
-      cursor: pointer;
-      display: inline-block;
-    }
-  `
+
+  const options = { ...{
+    // default options
+    containerStyle: `
+      .${prefix}suggest {
+        width: 100%;
+        position: absolute;
+        z-index: 999;
+        padding: 0;
+        margin: 0;
+        left: 0;
+        right: 0;
+        transition: opacity .25s ease;
+        text-align: left;
+        padding: 0 5px;
+      }
+    `,
+    tagStyle: `
+      .${prefix}suggest__class {
+        list-style: none;
+        cursor: pointer;
+        display: inline-block;
+      }
+    `,
+  },  ...opts };
 
   function update(show, filter = '') {
     render(html`
@@ -57,17 +63,13 @@ export default (editor, opts = {}) => {
     sm.addSelected(selector);
   }
 
-  const options = { ...{
-    // default options
-  },  ...opts };
-
   editor.on('load', () => {
     // build the UI
     const tags = editor.getContainer().querySelector(`#${prefix}clm-tags-field`);
     const input = tags.querySelector(`#${prefix}clm-new`);
     tags.parentNode.insertBefore(listEl, tags.nextSibling);
     const styleEl = document.createElement('style');
-    styleEl.innerHTML = styles;
+    styleEl.innerHTML = options.containerStyle + options.tagStyle;
     document.head.appendChild(styleEl);
     // bind to events
     input.addEventListener('blur', () => update(false));

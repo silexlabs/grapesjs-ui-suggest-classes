@@ -1,6 +1,6 @@
 {
   "name": "grapesjs-ui-suggest-classes",
-  "version": "1.0.8",
+  "version": "1.0.10",
   "description": "Grapesjs Ui Suggest Classes",
   "main": "dist/index.js",
   "repository": {
