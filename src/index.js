@@ -16,31 +16,35 @@ export default (editor, opts = {}) => {
       left: 0;
       right: 0;
       transition: opacity .25s ease;
+      text-align: left;
+      padding: 0 5px;
     }
     .${prefix}suggest__class {
-      margin: 0;
-      padding: 10px;
-      text-align: left;
+      xmargin: 0;
+      xpadding: 10px;
+      xtext-align: left;
       list-style: none;
       cursor: pointer;
+      display: inline-block;
     }
   `
 
-  function update(show) {
+  function update(show, filter = '') {
     render(html`
     <ul
-      class="${prefix}suggest"
+      class="${prefix}suggest ${prefix}one-bg"
       style=${styleMap({
         opacity: show ? '1' : '0',
         'pointer-events': show ? 'initial' : 'none',
       })}
     >
       ${ sm.getAll()
-        .filter(sel => !sel.private && !sm.getSelected().includes(sel))
+        .filter(sel => !sel.private && !sm.getSelected().includes(sel) && sel.getLabel().includes(filter))
+        .sort()
         .map(sel => html`
           <li
             data-sel-id=${sel.id}
-            class="${prefix}clm-sels-info ${prefix}one-bg ${prefix}two-color ${prefix}suggest__class"
+            class="${prefix}clm-tag ${prefix}three-bg ${prefix}suggest__class"
             @mousedown=${() => select(sel.id)}
           >
             ${sel.getLabel()}
@@ -70,7 +74,8 @@ export default (editor, opts = {}) => {
     document.head.appendChild(styleEl);
     // bind to events
     input.addEventListener('blur', () => update(false));
-    input.addEventListener('focus', () => update(true));
+    input.addEventListener('focus', () => update(true, input.value));
     editor.on('selector', () => update(false));
+    input.addEventListener('keyup', () => update(true, input.value));
   })
 };
