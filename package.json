@@ -8,7 +8,8 @@
     "url": "https://github.com/lexoyo/grapesjs-ui-suggest-classes.git"
   },
   "scripts": {
-    "release": "",
+    "release": "echo no release script",
+    "lint": "echo no linter",
     "prepublish": "npm run build",
     "start": "grapesjs-cli serve",
     "build": "grapesjs-cli build",
