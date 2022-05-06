@@ -11,7 +11,6 @@ export default (editor, opts = {}) => {
     // default options
     containerStyle: `
       .${prefix}suggest {
-        width: 100%;
         position: absolute;
         z-index: 999;
         padding: 0;
@@ -24,17 +23,27 @@ export default (editor, opts = {}) => {
       }
     `,
     tagStyle: `
-      .${prefix}suggest__class {
+      div.${prefix}suggest__class {
         list-style: none;
         cursor: pointer;
         display: inline-block;
+      }
+      .${prefix}suggest__count {
+        vertical-align: baseline;
+        font-size: x-small;
       }
     `,
   },  ...opts };
 
   function update(show, filter = '') {
+    const allComps = []
+    editor.Pages.getAll()
+    .forEach(page => {
+      page.getMainComponent()
+      .onAll((comp => allComps.push(comp)))
+    })
     render(html`
-    <ul
+    <div
       class="${prefix}suggest ${prefix}one-bg"
       style=${styleMap({
         opacity: show ? '1' : '0',
@@ -43,18 +52,27 @@ export default (editor, opts = {}) => {
     >
       ${ sm.getAll()
         .filter(sel => !sel.private && !sm.getSelected().includes(sel) && sel.getLabel().includes(filter))
-        .sort()
-        .map(sel => html`
-          <li
+        // count the number of times each css class is used
+        .map(sel => ({
+          sel,
+          count: allComps.reduce((num, comp) => comp.getClasses().includes(sel.id) ? num+1 : num, 0),
+        }))
+        .sort((first, second) => second.count - first.count)
+        // only classes which are in use
+        .filter(({sel, count}) => count > 0)
+        // same structure as the tags in the input field
+        .map(({sel, count}) => html`
+          <div
             data-sel-id=${sel.id}
             class="${prefix}clm-tag ${prefix}three-bg ${prefix}suggest__class"
             @mousedown=${() => select(sel.id)}
           >
-            ${sel.getLabel()}
-          </li>
+            <span data-tag-name="">${sel.getLabel()}</span>
+            <span class="${prefix}clm-tag-status ${prefix}suggest__count" data-tag-status="">${count}</span>
+          </div>
         `) 
       }
-    </ul>
+    </div>
   `, listEl);
   }
 
