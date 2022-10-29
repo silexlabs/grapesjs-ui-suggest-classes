@@ -1,3 +1,5 @@
+> This code is part of a bigger project: [Silex v3](https://github.com/silexlabs/Silex/tree/v3)
+
 # Grapesjs Ui Suggest Classes
 
 [DEMO](https://codepen.io/lexo1000/pen/abErmeW)
