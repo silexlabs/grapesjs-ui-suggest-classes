@@ -1,4 +1,4 @@
-> This code is part of a bigger project: [Silex v3](https://github.com/silexlabs/Silex/tree/v3)
+> This code is part of a bigger project: [Silex v3](https://github.com/silexlabs/Silex/tree/v3) which aims to be a free/libre alternative to webflow. PR welcome.
 
 # Grapesjs Ui Suggest Classes
 
