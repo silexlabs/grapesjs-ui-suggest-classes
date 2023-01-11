@@ -27,7 +27,7 @@
 * CDN
   * `https://unpkg.com/grapesjs-ui-suggest-classes`
 * NPM
-  * `npm i grapesjs-ui-suggest-classes`
+  * `npm i @silexlabs/grapesjs-ui-suggest-classes`
 * GIT
   * `git clone https://github.com/lexoyo/grapesjs-ui-suggest-classes.git`
 
