@@ -8,12 +8,9 @@
     "url": "https://github.com/silexlabs/grapesjs-ui-suggest-classes.git"
   },
   "scripts": {
-    "release": "echo no release script",
-    "lint": "echo no linter",
-    "prepublish": "npm run build",
+    "prepublish": "$npm_execpath run build",
     "start": "grapesjs-cli serve",
-    "build": "grapesjs-cli build",
-    "bump": "npm version patch -m 'Bump v%s'"
+    "build": "grapesjs-cli build"
   },
   "keywords": [
     "grapesjs",
