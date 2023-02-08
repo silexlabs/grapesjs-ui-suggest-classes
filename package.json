@@ -9,8 +9,8 @@
   },
   "scripts": {
     "prepublish": "$npm_execpath run build",
-    "start": "grapesjs-cli serve",
-    "build": "grapesjs-cli build"
+    "start": "grapesjs-cli serve --patch=false",
+    "build": "grapesjs-cli build --patch=false"
   },
   "keywords": [
     "grapesjs",
