@@ -1,6 +1,6 @@
 {
   "name": "@silexlabs/grapesjs-ui-suggest-classes",
-  "version": "1.0.18",
+  "version": "1.0.19",
   "description": "Grapesjs Ui Suggest Classes",
   "main": "dist/index.js",
   "repository": {
