@@ -40,6 +40,8 @@ export default (editor, opts = {}) => {
   function update(show, filter = '') {
     options.enablePerformance ?? console.time('update')
     options.enablePerformance ?? console.time('all-comps')
+    // Get all the website components
+    // Or [] if !options.enableCount
     const allComps = []
     if(options.enableCount) {
       editor.Pages.getAll()
@@ -49,6 +51,22 @@ export default (editor, opts = {}) => {
         })
     }
     options.enablePerformance ?? console.timeEnd('all-comps')
+    // Get all the selectors
+    const selectors = sm.getAll()
+      .filter(sel => !sel.private && !sm.getSelected().includes(sel) && sel.getLabel().includes(filter))
+    // Add the usage count
+    const tags = options.enableCount ? selectors
+      // count the number of times each css class is used
+      .map(sel => ({
+        sel,
+        count: allComps.reduce((num, comp) => comp.getClasses().includes(sel.id) ? num+1 : num, 0),
+      }))
+      .sort((first, second) => second.count - first.count)
+      // Keep only classes which are in use
+      .filter(({sel, count}) => count > 0)
+      // No counting
+      : selectors.map(sel => ({sel, count: 0}))
+    // Render the UI
     render(html`
     <div
       class="${prefix}suggest ${prefix}one-bg"
@@ -57,16 +75,7 @@ export default (editor, opts = {}) => {
         'pointer-events': show ? 'initial' : 'none',
       })}
     >
-      ${ sm.getAll()
-        .filter(sel => !sel.private && !sm.getSelected().includes(sel) && sel.getLabel().includes(filter))
-        // count the number of times each css class is used
-        .map(sel => ({
-          sel,
-          count: allComps.reduce((num, comp) => comp.getClasses().includes(sel.id) ? num+1 : num, 0),
-        }))
-        .sort((first, second) => second.count - first.count)
-        // only classes which are in use
-        .filter(({sel, count}) => count > 0)
+      ${ tags
         // same structure as the tags in the input field
         .map(({sel, count}) => html`
           <div
@@ -75,7 +84,7 @@ export default (editor, opts = {}) => {
             @mousedown=${() => select(sel.id)}
           >
             <span data-tag-name="">${sel.getLabel()}</span>
-            <span class="${prefix}clm-tag-status ${prefix}suggest__count" data-tag-status="">${count}</span>
+            ${ options.enableCount ? html`<span class="${prefix}clm-tag-status ${prefix}suggest__count" data-tag-status="">${count}</span>` : ''}
           </div>
         `) 
       }
