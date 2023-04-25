@@ -9,6 +9,8 @@ export default (editor, opts = {}) => {
 
   const options = { ...{
     // default options
+    enablePerformance: false,
+    enableCount: true,
     containerStyle: `
       .${prefix}suggest {
         position: absolute;
@@ -36,12 +38,17 @@ export default (editor, opts = {}) => {
   },  ...opts };
 
   function update(show, filter = '') {
+    options.enablePerformance ?? console.time('update')
+    options.enablePerformance ?? console.time('all-comps')
     const allComps = []
-    editor.Pages.getAll()
-    .forEach(page => {
-      page.getMainComponent()
-      .onAll((comp => allComps.push(comp)))
-    })
+    if(options.enableCount) {
+      editor.Pages.getAll()
+        .forEach(page => {
+          page.getMainComponent()
+            .onAll((comp => allComps.push(comp)))
+        })
+    }
+    options.enablePerformance ?? console.timeEnd('all-comps')
     render(html`
     <div
       class="${prefix}suggest ${prefix}one-bg"
@@ -74,11 +81,14 @@ export default (editor, opts = {}) => {
       }
     </div>
   `, listEl);
+    options.enablePerformance ?? console.timeEnd('update')
   }
 
   function select(selId) {
+    options.enablePerformance ?? console.time('select')
     const selector = sm.getAll().find(s => s.id === selId);
     sm.addSelected(selector);
+    options.enablePerformance ?? console.timeEnd('select')
   }
 
   editor.on('load', () => {

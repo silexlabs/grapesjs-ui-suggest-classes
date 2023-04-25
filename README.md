@@ -16,10 +16,11 @@
 ## Options
 
 | Option | Description | Default |
-|-|-|-
+|-|-|-|
 | `containerStyle` | The css style of the tags container | check the source code |
 | `tagStyle` | The css style of the tags | check the source code |
-
+| `enablePerformance` | Display execution times | false |
+| `enableCount` | Compute and display the number of components using each CSS class, and order classes accordingly. The algorithm for this is not very efficient yet and impacts preformances | true |
 
 
 ## Download
