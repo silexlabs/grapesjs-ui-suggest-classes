@@ -59,7 +59,7 @@ Directly in the browser
 Modern javascript
 ```js
 import grapesjs from 'grapesjs';
-import plugin from 'grapesjs-ui-suggest-classes';
+import plugin from '@silexlabs/grapesjs-ui-suggest-classes';
 import 'grapesjs/dist/css/grapes.min.css';
 
 const editor = grapesjs.init({
