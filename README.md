@@ -1,4 +1,5 @@
 > This code is part of a bigger project: [Silex v3](https://www.silex.me/) which aims to be a free/libre alternative to webflow
+> 
 > For bugs and support please [start a discussion here](https://community.silex.me)
 
 # Grapesjs Ui Suggest Classes
