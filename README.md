@@ -2,6 +2,8 @@
 > 
 > For bugs and support please [start a discussion here](https://community.silex.me)
 
+!! [read this to avoid performance issues](https://github.com/silexlabs/grapesjs-ui-suggest-classes/issues/5#issuecomment-1911240266)
+
 # Grapesjs Ui Suggest Classes
 
 [DEMO](https://codepen.io/lexo1000/pen/abErmeW)
