@@ -1,12 +1,14 @@
+# Grapesjs Ui Suggest Classes
+
+A grapesjs plugin to enable auto-complete of classes in the SelectorManager UI 
+
+[DEMO](https://codepen.io/lexo1000/pen/abErmeW)
+
 > This code is part of a bigger project: [Silex v3](https://www.silex.me/) which aims to be a free/libre alternative to webflow
 > 
 > For bugs and support please [start a discussion here](https://community.silex.me)
 
 !! [read this to avoid performance issues](https://github.com/silexlabs/grapesjs-ui-suggest-classes/issues/5#issuecomment-1911240266)
-
-# Grapesjs Ui Suggest Classes
-
-[DEMO](https://codepen.io/lexo1000/pen/abErmeW)
 
 ## Summary
 
